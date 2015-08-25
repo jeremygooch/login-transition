@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--[if IE 8]> 
+    <html lang="en" class="ie8"> 
+      <![endif]-->
+<!--[if IE 9]> 
+    <html lang="en" class="ie9"> 
+      <![endif]-->
+<!--[if !IE]><!-->
+    <html lang="en">
+      <!--<![endif]-->
+      <head>
+	<meta charset="utf-8">
+	<title>Login Animation v01</title>
+	<link href="css/reset.min.css" rel="stylesheet">
+	<link href="https://www.google.com/fonts#UsePlace:use/Collection:Oxygen:400,700" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+      </head>
+      <body>
+	<div class="form-wrapper">
+	  <form enctype="multipart/form-data" method="post" id="loginForm">
+	    <h1>Login</h1>
+	    <h4>Login with your email to continue</h4>
+	    <span class="input-email-wrapper"><input class="form-input" type="text" name="email" value="" placeholder="Email (enter demo)"></span>
+	    <span class="input-password-wrapper"><input class="form-input" type="password" name="password" value="" placeholder="Password (enter demo)"></span>
+	    <p><a href="javascript:;" id="password-reset-link">Forgot Password?</a></p>
+	    <input type="submit" name="submit" value="Login" class="form-submit">
+	  </form>
+	</div>
+	<script src="js/login.js"></script>
+        <script>
+	  (function() {
+	    loginInit();
+	  })();
+	</script>
+    </body></html>

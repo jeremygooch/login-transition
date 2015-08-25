@@ -1,0 +1,115 @@
+*, body {
+    font-family: 'Oxygen',"Sans-Serif";
+}
+body {
+    background-color: #e5e5e5;
+}
+.form-wrapper { 
+    position: relative; 
+    width: 100vw; height: 100vh;
+}
+form {
+    background-color: #fff;
+    width: 95%;
+    max-width: 23.5rem;
+    padding: 1.8rem;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%; left: 50%;
+    box-shadow: 0px 3px 5px rgba(0,0,0,.15);
+    transform: translate(-50%, -47%);
+    opacity: 0;
+    animation-timing-function: ease-out;
+    animation-name: fade-form;
+    animation-duration: 600ms; /* Delay for ~200ms then run the animation in 400ms*/
+    animation-fill-mode: forwards;
+}
+@keyframes fade-form {
+    0% { /* Delay */
+	opacity: 0; transform: translate(-50%, -47%);
+    }
+    33.333% { /* Start animation */
+	opacity: 0; transform: translate(-50%, -47%);
+    }
+    100% {
+	opacity: 1; transform: translate(-50%, -50%);
+    }
+}
+
+.form-input {
+    width: 100%;
+    margin: 1.2rem 0px;
+    height: 3rem;
+    background-color: rgb(242, 242, 242);
+    border: 1px solid #d4d4d4;
+    border-radius: 3px;
+    padding: .5rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 1.5rem;
+}
+.input-email-wrapper:after,
+.input-password-wrapper:after {
+    content: "";
+    display: block;
+    height: 1.2rem; width: 1.2rem;
+    right: 2.3rem;
+    position: absolute;
+    margin-top: -3.3rem;
+    opacity: .3;
+}
+.input-email-wrapper:after {
+    background: url(../images/envelope.svg) center no-repeat;
+    background-size: 1.2rem auto;
+}
+.input-password-wrapper:after {
+    background: url(../images/lock.svg) center no-repeat;
+    background-size: auto 1.2rem;
+}
+form a {
+    color: #404040;
+    text-decoration: none;
+    padding-bottom: .4rem;
+    border-bottom: 1px solid #fff;
+}
+form a:hover {
+    color: #404040;
+    animation-timing-function: ease-out;
+    animation-name: highlight-link;
+    animation-duration: 150ms; /* Delay for ~200ms then run the animation in 400ms*/
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+    animation-name: highlight-link;
+    animation-duration: 300ms;
+    animation-fill-mode: forwards;
+}
+@keyframes highlight-link {
+    0% { 
+	color: #404040; 
+	border-bottom: 1px solid #fff;
+    }
+    100% { 
+	color: #c09e5a; 
+	border-bottom: 1px solid #c09e5a;
+    }
+}
+.form-submit {
+    background-color: #c09e5a;
+    cursor: pointer;
+    color: #fff;
+    border: 0;
+    position: relative;
+    float: right;
+    padding: .75rem 2rem;
+}
+.form-submit:hover { box-shadow: 2px 2px 0px rgba(0,0,0,.15); }
+.form-submit:active { box-shadow: inset 2px 2px 0px rgba(0,0,0,.15); }
+input:focus, a { outline: none; }
+.form-submit::-moz-focus-inner,
+a::-moz-focus-inner { border: 0; }
+h1,h4 { 
+    text-align: center; 
+    font-weight: normal;
+}
+h4 { color: #a9a9a9; }
