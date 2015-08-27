@@ -35,10 +35,9 @@ form {
 	opacity: 1; transform: translate(-50%, -50%);
     }
 }
-
 .form-input {
     width: 100%;
-    margin: 1.2rem 0px;
+    margin: 1.2rem auto;
     height: 3rem;
     background-color: rgb(242, 242, 242);
     border: 1px solid #d4d4d4;
@@ -48,6 +47,7 @@ form {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     line-height: 1.5rem;
+    display: block;
 }
 .input-email-wrapper:after,
 .input-password-wrapper:after {
@@ -77,10 +77,6 @@ form a:hover {
     color: #404040;
     animation-timing-function: ease-out;
     animation-name: highlight-link;
-    animation-duration: 150ms; /* Delay for ~200ms then run the animation in 400ms*/
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-out;
-    animation-name: highlight-link;
     animation-duration: 300ms;
     animation-fill-mode: forwards;
 }
@@ -98,10 +94,26 @@ form a:hover {
     background-color: #c09e5a;
     cursor: pointer;
     color: #fff;
+    opacity: 0;
     border: 0;
     position: relative;
     float: right;
     padding: .75rem 2rem;
+    animation-name: form-submit;
+    animation-duration: 800ms;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+@keyframes form-submit {
+    0% { /* Delay */
+	opacity: 0;
+    }
+    55% { /* Start animation */
+	opacity: 0;
+    }
+    100% {
+	opacity: 1;
+    }
 }
 .form-submit:hover { box-shadow: 2px 2px 0px rgba(0,0,0,.15); }
 .form-submit:active { box-shadow: inset 2px 2px 0px rgba(0,0,0,.15); }
@@ -113,3 +125,27 @@ h1,h4 {
     font-weight: normal;
 }
 h4 { color: #a9a9a9; }
+.capture {
+    opacity: 1;
+    color: rgb(242, 242, 242);
+    animation-name: capture-input;
+    animation-duration: 300ms;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+.capturedText {
+    font-size: 110%;
+    line-height: 1.5rem;
+    color: rgba(0,0,0,.35);
+    display: block;
+    position: absolute;
+    padding: .5rem;
+    margin-top: -4rem;
+}
+@keyframes capture-input {
+    0% { width: 100%; padding: .5rem .5rem; opacity: 1;}
+    99% { width: 0.0001%; padding: .5rem 0rem; opacity: 1; }
+    100% { width: 0.0001%; padding: .5rem 0rem; opacity: 0; }
+}
+
+.error { border-color: #CE1313; }
