@@ -1,6 +1,38 @@
+var settings = {
+    general: {
+	capturedClassName: "capture",
+	errorClassName: "error",
+	username: "demo",
+	password: "demo"
+    }
+};
+
 function focusField() {
     var email = document.getElementById("email");
     email.focus();
+};
+
+function serverRequest(fields, callback) {
+    var output = {};
+    if (fields.user != settings.general.username) {
+	output.passed = false;
+	output.user = true;
+    }
+    if (fields.password != settings.general.password) {
+	output.passed = false;
+	output.pass = true;
+    }
+
+    if (output.passed === undefined) {
+	output.passed = true;
+    }
+
+    setTimeout(function() {
+        if (typeof callback == "function") {
+	    callback(status);
+	}
+    }, 600);
+
 };
 
 function formSubmit(form) {
@@ -21,33 +53,41 @@ function formSubmit(form) {
 	return output;
     };
 
+    function highlightField(e, field, classList) {
+	// Check for existing error before adding a new one
+	if (classList[classList.length -1] != e) { 
+	    field.className += " " + e;  
+	}
+	return true;
+    };
+
+    function removeHighlight(e, field, classList) {
+	// Check to make sure we actually need to remove the class
+	if (classList[classList.length -1] == e) {
+	    field.className = (field.className)
+		.substring(0, (field.className).length - (e.length +1));
+	}
+    };
+
     function validateFields(fields) {
 	var email	= fields.email, 
 	    pass	= fields.password,
 	    eClassList  = email.classList,
 	    pClassList  = pass.classList,
-	    errorClass  = "error",
+	    errorClass  = settings.general.errorClassName,
 	    valid	= true;
 
 	if ((email.value).length <= 3) { // Show Error
-	    if (eClassList[eClassList.length -1] != errorClass) { 
-	    	email.className += " " + errorClass; 
-	    }
+	    highlightField(errorClass, email, eClassList);
 	    valid = false;
 	} else { // Hide Error
-	    if (eClassList[eClassList.length -1] == errorClass) {
-		email.className = (email.className)
-		    .substring(0, (email.className).length - (errorClass.length +1));
-	    }
+	    removeHighlight(errorClass, email, eClassList);
 	}
 	if ((pass.value).length <= 3) { // Show Error
-	    if (pClassList[pClassList.length -1] != errorClass) { pass.className += " " + errorClass; }
+	    highlightField(errorClass, pass, pClassList);
 	    valid = false;
 	} else { // Hide Error
-	    if (pClassList[pClassList.length -1] == errorClass) {
-		pass.className = (pass.className)
-		    .substring(0, (pass.className).length - (errorClass.length +1));
-	    }
+	    removeHighlight(errorClass, email, pClassList);
 	}
 	return valid;
     };
@@ -57,21 +97,16 @@ function formSubmit(form) {
 	    var output = "";
 	    for(var i=0; i<(fields.password.value).length; i++) {
 		output+="•";
-		console.log(i);
 	    }
 	    return output;
 	};
 	
-	var holdClass = "capture", convertedPass = convertPass();
-	// Add animation class
-	fields.email.className		+= " " + holdClass;
-	fields.password.className	+= " " + holdClass;
+	var holdClass = settings.general.capturedClassName, convertedPass = convertPass();
 
 	// Add captured text
 	var email	= document.createElement("div"),
 	    eNode	= document.createTextNode(fields.email.value),
 	    pass	= document.createElement("div"),
-	    // pNode	= document.createTextNode(fields.password.value),
 	    pNode	= document.createTextNode(convertedPass),
 	    className	= "capturedText";
 	
@@ -83,13 +118,49 @@ function formSubmit(form) {
 	pass.appendChild(pNode);
 	fields.password.parentNode.appendChild(pass);
 
-	console.dir(fields.email);
+	// Add animation class
+	fields.email.className		+= " " + holdClass;
+	fields.password.className	+= " " + holdClass;
+
+	// Hide the icons
+	var hide = "hide-icon",
+	    emailParent = fields.email.parentElement.classList[
+		(fields.email.parentElement.classList).length],
+	    passParent = fields.password.parentElement.classList[
+		(fields.password.parentElement.classList).length];
+	
+	if (emailParent != hide) {
+	    fields.email.parentElement.className += " " + hide;
+	}
+
+	if (passParent != hide) {
+	    fields.password.parentElement.className += " " + hide;
+	}
+
+	return true;
     };
 
     // validate form
     var fields = getInputFields();
     if (validateFields(fields)) {
-	captureFields(fields);
+	if (captureFields(fields)) {
+	    var status = serverRequest({
+		user: fields.email.value,
+		password: fields.password.value
+	    }, function(status) {
+		if (status.passed) {
+		    console.log('show the login animation...');
+		} else {
+		    // Release the fields
+		    (fields.email.classList).remove(settings.general.capturedClassName);
+		    (fields.password.classList).remove(settings.general.capturedClassName);
+
+		    // Show the errors
+		    highlightField(settings.general.errorClassName, fields.email, fields.email.classList);
+		    highlightField(settings.general.errorClassName, fields.password, fields.password.classList);
+		}
+	    });
+	}
     }
 };
 

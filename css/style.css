@@ -48,6 +48,8 @@ form {
     box-sizing: border-box;
     line-height: 1.5rem;
     display: block;
+    position: relative;
+    z-index: 2;
 }
 .input-email-wrapper:after,
 .input-password-wrapper:after {
@@ -56,9 +58,11 @@ form {
     height: 1.2rem; width: 1.2rem;
     right: 2.3rem;
     position: absolute;
+    z-index: 3;
     margin-top: -3.3rem;
     opacity: .3;
 }
+.hide-icon:after { display: none; }
 .input-email-wrapper:after {
     background: url(../images/envelope.svg) center no-repeat;
     background-size: 1.2rem auto;
@@ -91,19 +95,19 @@ form a:hover {
     }
 }
 .form-submit {
-    background-color: #c09e5a;
-    cursor: pointer;
     color: #fff;
     opacity: 0;
     border: 0;
-    position: relative;
-    float: right;
     padding: .75rem 2rem;
     animation-name: form-submit;
     animation-duration: 800ms;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
+    float: right;
+    cursor: pointer;
+    background-color: #c09e5a;
 }
+
 @keyframes form-submit {
     0% { /* Delay */
 	opacity: 0;
@@ -117,6 +121,10 @@ form a:hover {
 }
 .form-submit:hover { box-shadow: 2px 2px 0px rgba(0,0,0,.15); }
 .form-submit:active { box-shadow: inset 2px 2px 0px rgba(0,0,0,.15); }
+.submit-wrapper:hover .candy-cane {
+    opacity: 1;
+}
+
 input:focus, a { outline: none; }
 .form-submit::-moz-focus-inner,
 a::-moz-focus-inner { border: 0; }
@@ -139,6 +147,7 @@ h4 { color: #a9a9a9; }
     color: rgba(0,0,0,.35);
     display: block;
     position: absolute;
+    z-index: 1;
     padding: .5rem;
     margin-top: -4rem;
 }
@@ -148,4 +157,13 @@ h4 { color: #a9a9a9; }
     100% { width: 0.0001%; padding: .5rem 0rem; opacity: 0; }
 }
 
-.error { border-color: #CE1313; }
+.error { 
+    animation-name: show-error;
+    animation-duration: 100ms;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+@keyframes show-error {
+    0% { border-color: #d4d4d4; }
+    100% { border-color: #CE1313; }
+}
