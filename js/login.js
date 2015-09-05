@@ -2,14 +2,10 @@ var settings = {
     general: {
 	capturedClassName: "capture",
 	errorClassName: "error",
+	loginAnimClassName: "remove-login",
 	username: "demo",
 	password: "demo"
     }
-};
-
-function focusField() {
-    var email = document.getElementById("email");
-    email.focus();
 };
 
 function serverRqst(fields) {
@@ -140,10 +136,12 @@ function formSubmit(form) {
 	    className	= "capturedText";
 	
 	email.className = className;
+	email.id = "capturedEmail";
 	email.appendChild(eNode);
 	fields.email.parentNode.appendChild(email);
 
 	pass.className = className;
+	pass.id = "capturedPass";
 	pass.appendChild(pNode);
 	fields.password.parentNode.appendChild(pass);
 
@@ -175,30 +173,44 @@ function formSubmit(form) {
 	if (captureFields(fields)) {
 	    serverRqst(fields).then(function(status) {
 		if (status.passed) {
-	            console.log('show the login animation...');
+		    // Show the login animation
+		    var loginForm = document.getElementById("login-wrapper");
+		    loginForm.className += " " + settings.general.loginAnimClassName;
 		} else {
 	            // Release the fields
 	            (fields.email.classList).remove(settings.general.capturedClassName);
 	            (fields.password.classList).remove(settings.general.capturedClassName);
+		    var eCapturedText	= document.getElementById("capturedEmail"),
+			eParent		= eCapturedText.parentElement,
+			pCapturedText	= document.getElementById("capturedPass"),
+			pParent		= pCapturedText.parentElement;
+
+		    eParent.removeChild(eCapturedText);
+		    pParent.removeChild(pCapturedText);
 
 	            // And show the errors
-	            highlightField(settings.general.errorClassName, fields.email, fields.email.classList);
-	            highlightField(settings.general.errorClassName, fields.password, fields.password.classList);
+		    if (status.emailErr) {
+			highlightField(settings.general.errorClassName, fields.email, fields.email.classList);
+		    } 
+		    if (status.passErr) {
+			highlightField(settings.general.errorClassName, fields.password, fields.password.classList);
+		    }
 		}
 	    }, function(error) {
-		console.error("Failed!", error);
+		console.error("Psuedo Server Request Failed! ", error);
 	    });
 	}
     }
 };
 
 function loginInit() {
-    var loginForm = document.getElementById("loginForm");
+    var email = document.getElementById("email");
+    email.focus();
 
+    var loginForm = document.getElementById("loginForm");
     loginForm.onsubmit=function(){
 	formSubmit(loginForm);
 	return false;
     };
 
-    focusField();
 };

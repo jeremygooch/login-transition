@@ -183,7 +183,7 @@ h4 { color: #a9a9a9; }
     bottom: 0;
 }
 .left-panel, .right-panel {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     width: 50vw; height: 20vh;
     position: absolute;
     top: 40vh;
@@ -195,7 +195,6 @@ h4 { color: #a9a9a9; }
 .right-panel {
     right: 0;     
 }
-
 .remove-login {
-    
+    border: 1px solid yellow;
 }
