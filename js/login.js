@@ -12,6 +12,33 @@ function focusField() {
     email.focus();
 };
 
+function serverRqst(fields) {
+    // Return a new promise.
+    return new Promise(function(resolve, reject) {
+	setTimeout(function() {
+	    var output = {};
+	    if (fields.email.value != settings.general.username) {
+		output.passed = false;
+		output.emailErr = true;
+	    } else {
+		output.emailErr = false;
+	    }
+	    if (fields.password.value != settings.general.password) {
+		output.passed = false;
+		output.passErr = true;
+	    } else {
+		output.passErr = false;
+	    }
+
+	    if (output.passed === undefined) {
+		output.passed = true;
+	    }
+
+	    resolve(output);
+	}, 600);
+    });
+};
+
 function serverRequest(fields, callback) {
     var output = {};
     if (fields.user != settings.general.username) {
@@ -26,13 +53,6 @@ function serverRequest(fields, callback) {
     if (output.passed === undefined) {
 	output.passed = true;
     }
-
-    setTimeout(function() {
-        if (typeof callback == "function") {
-	    callback(status);
-	}
-    }, 600);
-
 };
 
 function formSubmit(form) {
@@ -62,10 +82,11 @@ function formSubmit(form) {
     };
 
     function removeHighlight(e, field, classList) {
-	// Check to make sure we actually need to remove the class
-	if (classList[classList.length -1] == e) {
-	    field.className = (field.className)
-		.substring(0, (field.className).length - (e.length +1));
+	for (var i=0; i<=classList.length; i++) {
+	    if (classList[i] == e) {
+		field.className = (field.className)
+		    .substring(0, (field.className).length - (e.length +1));
+	    }
 	}
     };
 
@@ -87,12 +108,20 @@ function formSubmit(form) {
 	    highlightField(errorClass, pass, pClassList);
 	    valid = false;
 	} else { // Hide Error
-	    removeHighlight(errorClass, email, pClassList);
+	    removeHighlight(errorClass, pass, pClassList);
 	}
 	return valid;
     };
 
     function captureFields(fields) {
+	// Remove any previous error messages
+	removeHighlight(settings.general.errorClassName, fields.email, fields.email.classList);
+	removeHighlight(settings.general.errorClassName, fields.password, fields.password.classList);
+
+	// Remove any previous bg text
+	fields.email.nextElementSibling = {};
+	fields.email.nextSibling = {};
+
 	function convertPass() {
 	    var output = "";
 	    for(var i=0; i<(fields.password.value).length; i++) {
@@ -144,21 +173,20 @@ function formSubmit(form) {
     var fields = getInputFields();
     if (validateFields(fields)) {
 	if (captureFields(fields)) {
-	    var status = serverRequest({
-		user: fields.email.value,
-		password: fields.password.value
-	    }, function(status) {
+	    serverRqst(fields).then(function(status) {
 		if (status.passed) {
-		    console.log('show the login animation...');
+	            console.log('show the login animation...');
 		} else {
-		    // Release the fields
-		    (fields.email.classList).remove(settings.general.capturedClassName);
-		    (fields.password.classList).remove(settings.general.capturedClassName);
+	            // Release the fields
+	            (fields.email.classList).remove(settings.general.capturedClassName);
+	            (fields.password.classList).remove(settings.general.capturedClassName);
 
-		    // Show the errors
-		    highlightField(settings.general.errorClassName, fields.email, fields.email.classList);
-		    highlightField(settings.general.errorClassName, fields.password, fields.password.classList);
+	            // And show the errors
+	            highlightField(settings.general.errorClassName, fields.email, fields.email.classList);
+	            highlightField(settings.general.errorClassName, fields.password, fields.password.classList);
 		}
+	    }, function(error) {
+		console.error("Failed!", error);
 	    });
 	}
     }
