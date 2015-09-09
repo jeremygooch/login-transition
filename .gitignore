@@ -1,8 +1,6 @@
 # -*- mode: gitignore; -*-
 *~
 \#*\#
-/.emacs.desktop
-/.emacs.desktop.lock
 *.elc
 auto-save-list
 tramp
@@ -30,3 +28,13 @@ tramp
 
 # cask packages
 .cask/
+
+
+
+
+
+
+/bower_components/*
+/.sass-cache/*
+*.DS_Store
+/stylesheets/*

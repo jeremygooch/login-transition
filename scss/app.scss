@@ -1,0 +1,181 @@
+@import "settings";
+@import "foundation";
+
+@font-face {
+  font-family: 'MagistralC';
+  src: url('../assets/fonts/magistralc.eot'); /* IE9 Compat Modes */
+  src: url('../assets/fonts/magistralc.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../assets/fonts/magistralc.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../assets/fonts/magistralc.woff') format('woff'), /* Pretty Modern Browsers */
+       url('../assets/fonts/magistralc.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../assets/fonts/magistralc.otf')  format('opentype'), /* Open Font */
+}
+
+body {
+    background: #a8adc1; 
+    background: -moz-linear-gradient(-45deg,  #a8adc1 0%, #b8b9c1 100%); 
+    background: -webkit-gradient(linear, left top, right bottom,
+				 color-stop(0%,#a8adc1),
+				 color-stop(100%,#b8b9c1)); 
+    background: -webkit-linear-gradient(-45deg,  #a8adc1 0%,#b8b9c1 100%); 
+    background: -o-linear-gradient(-45deg,  #a8adc1 0%,#b8b9c1 100%); 
+    background: -ms-linear-gradient(-45deg,  #a8adc1 0%,#b8b9c1 100%);
+    background: linear-gradient(135deg,  #a8adc1 0%,#b8b9c1 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient(
+	startColorstr='#a8adc1', endColorstr='#b8b9c1',GradientType=1 );
+}
+
+body:before {
+    content: " ";
+    height: 100vh; width: 100vw;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0.59) 82%,
+				     rgba(255,255,255,0.56) 83%,rgba(255,255,255,0) 100%); 
+    background: -webkit-gradient(linear, left top, left bottom,
+				 color-stop(0%,rgba(255,255,255,0)),
+				 color-stop(82%,rgba(255,255,255,0.59)),
+				 color-stop(83%,rgba(255,255,255,0.56)),
+				 color-stop(100%,rgba(255,255,255,0))); 
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,
+					rgba(255,255,255,0.59) 82%,
+					rgba(255,255,255,0.56) 83%,
+					rgba(255,255,255,0) 100%);
+    background: -o-linear-gradient(top, rgba(255,255,255,0) 0%,
+				   rgba(255,255,255,0.59) 82%,
+				   rgba(255,255,255,0.56) 83%,
+				   rgba(255,255,255,0) 100%);
+    background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%,
+				    rgba(255,255,255,0.59) 82%,
+				    rgba(255,255,255,0.56) 83%,
+				    rgba(255,255,255,0) 100%); 
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,
+				rgba(255,255,255,0.59) 82%,
+				rgba(255,255,255,0.56) 83%,
+				rgba(255,255,255,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(
+	startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=0 );
+}
+
+h1 { text-transform: uppercase; }
+
+form {
+    background: rgba(0,0,0,.52);
+    padding: 4.4% !important;
+    -moz-box-shadow:    0 0 15px rgba(0,0,0,.4);
+    -webkit-box-shadow: 0 0 15px rgba(0,0,0,.4);
+    box-shadow:         0 0 15px rgba(0,0,0,.4);
+}
+
+.loginForm {
+    transform: scaleY(0); 
+    max-width: 1px;
+    margin: 0 auto;
+    padding: 0 0 0 0 !important;
+    margin-top: 2%;
+    animation: slideOutHoriz 650ms ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slideOutHoriz {
+  0% {
+      margin-top: 2%;
+      transform: scaleY(0);
+      max-width: 1px;
+      padding: 0 0 0 0;
+  }
+  65% {
+      margin-top: 0;
+      transform: scaleY(1);
+      max-width: 1px;
+      padding: 4.4% 0 4.4% 0;
+  }
+  100% {
+      margin-top: 0;
+      transform: scaleY(1);
+      max-width: 100%;
+      padding: 4.4% 4.4% 4.4% 4.4%;
+  }
+}
+
+.login-content-wrapper * { white-space: nowrap; }
+
+.login-content-wrapper {
+    opacity: 0;
+    animation: slowFadeIn 850ms ease-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slowFadeIn {
+  0% { opacity: 0; } 90% { opacity: 0; } 100% { opacity: 1; }
+}
+
+form h2, form label { color: #fff; }
+
+input {
+    border-radius: 3px !important;
+    margin-bottom: 1.275rem !important;
+    z-index: 2;
+}
+input:input-placeholder { color: rgba(255,255,255,0.23) !important; }
+
+[class^="-wrapper"]:before, [class*="-wrapper"]:before {
+    content: " ";
+    opacity: 0;
+    position: absolute;
+    height: 2.7125rem;
+    width: 93%;
+    display: block;
+    margin-top: -.3rem;
+    margin-left: -.3rem;
+    padding: 0;
+    z-index: -1;
+}
+[class^="-wrapper"].active:before, [class*="-wrapper"].active:before,
+[class^="-wrapper"].fadeOut:before, [class*="-wrapper"].fadeOut:before {
+    z-index: 1;
+    border-image-width: 5px;
+    border-image:url('../assets/images/input-foucs-border.png') 5 stretch;
+    animation: fadeIn 350ms;
+    animation-fill-mode: forwards;
+}
+[class^="-wrapper"].fadeOut:before, [class*="-wrapper"].fadeOut:before {
+    opacity: 1;
+    animation: fadeOut 350ms;
+    animation-fill-mode: forwards;
+}
+
+input[type="checkbox"] {
+    display:none;
+}
+input[type="checkbox"] + label {
+    display: inline-block;
+    width: 1.8rem;
+    height: 1.8rem;
+    margin: 0;
+    border-radius: 3px;
+    padding-left: 2rem;
+    padding-top: .39rem;
+    vertical-align: middle;
+    cursor: pointer;
+    position: absolute;
+    background-color: rgba(0,0,0,.29);
+}
+input[type="checkbox"] + label span { margin-left: 1.25rem; }
+input[type="checkbox"]:checked + label {
+    background-color: rgba(255,255,255,.29);
+}
+
+
+
+
+
+
+@keyframes fadeOut {
+  from { opacity: 1; } to { opacity: 0; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}

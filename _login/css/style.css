@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.panel {
+    background-color: #d5ccbb;
+    position: absolute;
+    z-index: 1;
+}
+
+.panel-top, .panel-bottom {
+    width: 100vw;
+    height: 40vh;
+    left: 0;
+}
+.panel-top { top: 0; }
+.panel-bottom { bottom: 0; }
+.panel-left, .panel-right {
+    width: 50vw;
+    height: 20vh;
+    top: 40vh;
+}
+.panel-left { left: 0; }
+.panel-right { right: 0; }
+
+.login-holder {
+    position: absolute;
+    z-index: 2;
+    width: 250px;
+    height: 350px;
+    top: 50%;
+    left: 50%;
+    margin: -175px 0 0 -125px;
+    opacity: 1;
+    background: #fff;
+    box-shadow: 0px 1px 1px rgba(0,0,0,.15);
+}
+
+.panel-top.slide-out {
+  -webkit-animation: slide-out-top 400ms ease-in forwards;
+     -moz-animation: slide-out-top 400ms ease-in forwards;
+       -o-animation: slide-out-top 400ms ease-in forwards;
+          animation: slide-out-top 400ms ease-in forwards;
+}
+.panel-bottom.slide-out {
+  -webkit-animation: slide-out-bottom 400ms ease-in forwards;
+     -moz-animation: slide-out-bottom 400ms ease-in forwards;
+       -o-animation: slide-out-bottom 400ms ease-in forwards;
+          animation: slide-out-bottom 400ms ease-in forwards;
+}
+.panel-left.slide-out {
+  -webkit-animation: slide-out-left 400ms ease-in forwards;
+     -moz-animation: slide-out-left 400ms ease-in forwards;
+       -o-animation: slide-out-left 400ms ease-in forwards;
+          animation: slide-out-left 400ms ease-in forwards;
+}
+.panel-right.slide-out {
+  -webkit-animation: slide-out-right 400ms ease-in forwards;
+     -moz-animation: slide-out-right 400ms ease-in forwards;
+       -o-animation: slide-out-right 400ms ease-in forwards;
+          animation: slide-out-right 400ms ease-in forwards;
+}
+.login-holder.fade-out {
+  -webkit-animation: fade-out 475ms ease-in forwards;
+     -moz-animation: fade-out 475ms ease-in forwards;
+       -o-animation: fade-out 475ms ease-in forwards;
+          animation: fade-out 475ms ease-in forwards;
+}
+
+@-webkit-keyframes fade-out {
+    from {
+	opacity: 1;
+	width: 250px;
+	height: 350px;
+	margin: -175px 0 0 -125px;
+    } to {
+	opacity: 0;
+	width: 500px;
+	height: 700px;
+	margin: -350px 0 0 -250px;
+    }
+}
+   @-moz-keyframes slide-out-top { from { top: 0; } to { top: -40vh; }  }
+     @-o-keyframes slide-out-top { from { top: 0; } to { top: -40vh; }  }
+        @keyframes slide-out-top { from { top: 0; } to { top: -40vh; }  }
+
+
+@-webkit-keyframes slide-out-top { from { top: 0; } to { top: -40vh; }  }
+   @-moz-keyframes slide-out-top { from { top: 0; } to { top: -40vh; }  }
+     @-o-keyframes slide-out-top { from { top: 0; } to { top: -40vh; }  }
+        @keyframes slide-out-top { from { top: 0; } to { top: -40vh; }  }
+
+@-webkit-keyframes slide-out-bottom { from { bottom: 0; } to { bottom: -40vh; }  }
+   @-moz-keyframes slide-out-bottom { from { bottom: 0; } to { bottom: -40vh; }  }
+     @-o-keyframes slide-out-bottom { from { bottom: 0; } to { bottom: -40vh; }  }
+        @keyframes slide-out-bottom { from { bottom: 0; } to { bottom: -40vh; }  }
+
+@-webkit-keyframes slide-out-left { from { left: 0; } to { left: -50vw; }  }
+   @-moz-keyframes slide-out-left { from { left: 0; } to { left: -50vw; }  }
+     @-o-keyframes slide-out-left { from { left: 0; } to { left: -50vw; }  }
+        @keyframes slide-out-left { from { left: 0; } to { left: -50vw; }  }
+
+@-webkit-keyframes slide-out-right { from { right: 0; } to { right: -50vw; }  }
+   @-moz-keyframes slide-out-right { from { right: 0; } to { right: -50vw; }  }
+     @-o-keyframes slide-out-right { from { right: 0; } to { right: -50vw; }  }
+        @keyframes slide-out-right { from { right: 0; } to { right: -50vw; }  }
+
+.wrapper {
+    height: 100vh;
+    width: 100vw;
+    background: url(../images/checkboard.png) top left repeat;
+}
