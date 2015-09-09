@@ -18,21 +18,28 @@
 	<form enctype="multipart/form-data" method="post" id="loginForm" class="loginForm">
 	  <div class="login-content-wrapper">
 	    <h2>Login</h2>
-	    <span class="input-email-wrapper">
-	      <input class="form-input" type="text" name="email" value="" id="email" placeholder="Username or Email Address"  tabindex="1">
-	    </span>
-	    <span class="input-password-wrapper">
-	      <input class="form-input" type="password" name="password" value="" id="pass" placeholder="Password" tabindex="2">
-	    </span>
-	    <p>
+	    <div class="clearfix">
+	      <span class="input-email-wrapper">
+		<input class="form-input" type="text" name="email" value="" id="email" placeholder="Username or Email Address"  tabindex="1">
+	      </span>
+	      <span class="input-password-wrapper">
+		<input class="form-input" type="password" name="password" value="" id="pass" placeholder="Password" tabindex="2">
+	      </span>
+	    </div>
+	    <div class="form-row">
 	      <input type="checkbox" name="remember" value="remember" id="remember">
 	      <label for="remember" tabindex="3"><span>Remember Me</span></label>
-	    </p>
-	    <p><a href="javascript:;" id="password-reset-link">Forgot Password?</a></p>
-	    <div class="submit-wrapper">
-	      <input type="submit" name="submit" value="Login" class="form-submit">
-	      <div class="candy-cane"></div>
 	    </div>
+	    <div class="clearfix actions">
+	      <div class="submit-wrapper">
+		<input type="submit" name="submit" value="Sign In" class="form-submit  [radius round]">
+		<div class="candy-cane"></div>
+	      </div>
+	      <span class="forgot-password-wrapper">
+		<a href="javascript:;" id="password-reset-link">Forgot Password?</a>
+	      </span>
+	    </div>
+	    <div class="form-row"></div>
 	  </div>
 	</form>
       </div>
