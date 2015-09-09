@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'MagistralC';
+  src: url("../assets/fonts/font.eot");
+  /* IE9 Compat Modes */
+  src: url("../assets/fonts/font.eot?#iefix") format("embedded-opentype"), url("../assets/fonts/font.woff2") format("woff2"), url("../assets/fonts/font.woff") format("woff"), url("../assets/fonts/font.ttf") format("truetype"), url("../assets/fonts/font.otf") format("opentype"); }
+body, *, h1, h2, h3, h4, h5, h6 {
+  font-family: 'MagistralC', sans-serif; }
+
+/*# sourceMappingURL=network.css.map */
