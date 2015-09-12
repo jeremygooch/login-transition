@@ -24,6 +24,26 @@ var formFieldHighlight = function() {
 	    }, 500);
 	}
     };
+
+    var loginSubmit = function() {
+	// Add pending animation
+	var form	= document.getElementById('loginForm'),
+	    circle001	= document.createElement('div');
+
+	circle001.className = 'circle001';
+
+	$(form).addClass('pending').parent().height($(form).height());
+
+	window.setTimeout(function() {
+	    $(form).after(circle001);
+	}, 250);
+	
+	
+	// Need to add field validation
+
+	// Check for correct creds
+
+    };
     
     var inputs = $('input');
     inputs.each(function() {
@@ -35,7 +55,11 @@ var formFieldHighlight = function() {
 	});
 
 	if ($(this)[0].type == 'submit') {
-	    console.log('found you!!');
+	    // Form submission
+	    $(this).on('click', function(e) {
+		e.preventDefault();
+		loginSubmit();
+	    });
 	}
     });
 };
