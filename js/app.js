@@ -19,8 +19,8 @@ var formFieldHighlight = function() {
 	    before.addClass('fadeOut');
 	    after.addClass('fadeOut');
 	    window.setTimeout(function() {
-		before.remove();
-		after.remove();
+	    	before.remove();
+	    	after.remove();
 	    }, 500);
 	}
     };
@@ -33,6 +33,10 @@ var formFieldHighlight = function() {
 	$(this).on('blur',function() {
 	    highlight($(this),true);
 	});
+
+	if ($(this)[0].type == 'submit') {
+	    console.log('found you!!');
+	}
     });
 };
 

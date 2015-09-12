@@ -73,7 +73,7 @@ form {
     transform: scaleY(0); 
     max-width: 1px;
     margin: 0 auto;
-    padding: 0 0 0 0 !important;
+    padding: 4.4% 0 !important;
     margin-top: 2%;
     animation: slideOutHoriz 650ms ease-in;
     animation-fill-mode: forwards;
@@ -84,25 +84,24 @@ form {
       margin-top: 2%;
       transform: scaleY(0);
       max-width: 1px;
-      padding: 0 0 0 0;
   }
   65% {
       margin-top: 0;
       transform: scaleY(1);
       max-width: 1px;
-      padding: 4.4% 0 4.4% 0;
   }
   100% {
       margin-top: 0;
       transform: scaleY(1);
       max-width: 100%;
-      padding: 4.4% 4.4% 4.4% 4.4%;
   }
 }
 
 .login-content-wrapper * { white-space: nowrap; }
 
 .login-content-wrapper {
+    width: 94.6%;
+    margin: 0 auto;
     opacity: 0;
     animation: slowFadeIn 850ms ease-out;
     animation-fill-mode: forwards;
@@ -223,6 +222,10 @@ input[type="checkbox"]:checked + label {
     position: absolute;
     margin: 0;
     right: 0;
+}
+@-moz-document url-prefix() {
+    .submit-wrapper .focusBefore { margin: .15rem -.8rem 0 0; }
+    .submit-wrapper .focusAfter { margin-top: .125rem; }
 }
 .form-submit {
     position: relative;
