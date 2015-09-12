@@ -1,20 +1,27 @@
-// Foundation JavaScript
-// Documentation can be found at: http://foundation.zurb.com/docs
 $(document).foundation();
-
 
 var formFieldHighlight = function() {
     var highlight = function(elm, remove) {
-	var parent = elm.parent();
+	var beforeClass = 'focusBefore', afterClass= 'focusAfter';
 	if (!remove) {
-	    parent.addClass('active');
-	    parent.removeClass('fadeOut');
+	    var before = document.createElement('div'),
+	        after  = document.createElement('div');
+
+	    before.className	= beforeClass;
+	    after.className	= afterClass;
+
+	    elm.after(after);
+	    elm.before(before);
 	} else {
-	    parent.removeClass('active');
-	    parent.addClass('fadeOut');
+	    var before = elm.prev('.' + beforeClass),
+	        after  = elm.next('.' + afterClass);
+
+	    before.addClass('fadeOut');
+	    after.addClass('fadeOut');
 	    window.setTimeout(function() {
-		parent.removeClass('fadeOut');
-	    }, 355);
+		before.remove();
+		after.remove();
+	    }, 500);
 	}
     };
     
