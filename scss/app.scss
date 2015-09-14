@@ -158,10 +158,86 @@ form {
     animation-fill-mode: forwards;
 }
 
-.circle001 {
-    border: 1px solid red;
-    height: 5rem;
-    width: 5rem;
+.pending-circle {
+    background-size: auto 100%;
+    height: 233px;
+    width: 233px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -116px;
+    margin-top: -116px;
+    background-position-y: 0px;
+    -webkit-transform-origin: 50% 50%;
+}
+
+.c01 {
+    /* display: none; */
+    background-image: url(../images/pending-sprite.svg);
+    background-position-x: -1px;
+    animation: fadeIn 100ms ease-out forwards,
+               circle001 2000ms ease-out infinite;
+}
+.c02 {
+    /* display: none; */
+    background-image: url(../images/pending-sprite.svg);
+    background-position-x: -235px;
+    animation: fadeIn 200ms ease-out forwards,
+               circle001 2500ms ease-out infinite;
+}
+.c03 {
+    /* display: none; */
+    background-size: auto 100%;
+    background-image: url(../images/pending-sprite.svg);
+    height: 50px; width: 50px;
+    margin: -25px 0 0 -25px;
+    background-position-x: -97px;
+    animation: fadeIn 200ms ease-out forwards,
+               circle003 450ms ease-in forwards,
+               fullRotation 1500ms 450ms ease-in alternate infinite;
+}
+.c04 {
+    background-image: url(../images/pending-sprite.svg);
+    background-position-x: -699px;
+    animation: fadeIn 500ms ease-out forwards,
+               halfFadeIn 250ms ease-out alternate infinite;
+}
+.c05 {
+    /* display: none; */
+    background-image: url(../images/pending-sprite.svg);
+    background-position-x: -932px;
+    animation: fadeIn 200ms ease-out forwards,
+               circle004 2500ms ease-out infinite;
+}
+
+@keyframes circle001 {
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(30deg); }
+    50% { transform: rotate(-30deg); }
+    70% { transform: rotate(-50deg); }
+    100% { transform: rotate(0deg); }
+}
+@keyframes fullRotation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-99deg); }
+}
+@keyframes circle003 {
+    0% {
+	height: 50px; width: 50px;
+	margin: -25px 0 0 -25px;
+	background-position-x: -97px;
+    }
+    100% {
+	height: 233px; width: 233px; 
+	margin: -116px 0 0 -116px;
+	background-position-x: -467px;
+    }
+}
+@keyframes circle004 {
+    0% { transform: rotate(0deg); }
+    33% { transform: rotate(-30deg); }
+    75% { transform: rotate(30deg); }
+    100% { transform: rotate(0deg); }
 }
 
 
@@ -305,7 +381,9 @@ input[type="checkbox"]:checked + label {
 
 
 
-
+@keyframes halfFadeIn {
+  from { opacity: 1; } to { opacity: .5; }
+}
 @keyframes fadeOut {
   from { opacity: 1; } to { opacity: 0; }
 }

@@ -27,15 +27,23 @@ var formFieldHighlight = function() {
 
     var loginSubmit = function() {
 	// Add pending animation
-	var form	= document.getElementById('loginForm'),
-	    circle001	= document.createElement('div');
+	var form	= document.getElementById('loginForm');
+	    // circle001	= document.createElement('div');
 
-	circle001.className = 'circle001';
+
+
+	// circle001.className = 'pending-circle c01';
 
 	$(form).addClass('pending').parent().height($(form).height());
 
 	window.setTimeout(function() {
-	    $(form).after(circle001);
+	    // $(form).after(circle001);
+	    var circle = [];
+	    for (var i=1; i<9; i++) {
+		circle[i] = document.createElement('div');
+		circle[i].className = 'pending-circle c0' + i;
+		$(form).after(circle[i]);
+	    }	    
 	}, 250);
 	
 	
