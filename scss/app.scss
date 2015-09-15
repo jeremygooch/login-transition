@@ -209,6 +209,27 @@ form {
     animation: fadeIn 200ms ease-out forwards,
                circle004 2500ms ease-out infinite;
 }
+.c06 {
+    /* display: none; */
+    background-image: url(../images/pending-sprite.svg);
+    background-position-x: -1166px;
+    animation: fadeIn 200ms ease-out forwards,
+               circle005 2200ms ease-out infinite;
+}
+.c07 {
+    /* display: none; */
+    background-image: url(../images/pending-sprite.svg);
+    background-position-x: -1398px;
+    animation: fadeIn 200ms ease-out forwards,
+               circle006 2200ms ease-out alternate infinite;
+}
+.c08 {
+    /* display: none; */
+    background-image: url(../images/pending-sprite.svg);
+    background-position-x: -1634px;
+    animation: fadeIn 220ms ease-out forwards,
+               circle007 2000ms ease-out alternate infinite;
+}
 
 @keyframes circle001 {
     0% { transform: rotate(0deg); }
@@ -238,6 +259,21 @@ form {
     33% { transform: rotate(-30deg); }
     75% { transform: rotate(30deg); }
     100% { transform: rotate(0deg); }
+}
+@keyframes circle005 {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(10deg); }
+    50% { transform: rotate(75deg); }
+    75% { transform: rotate(30deg); }
+    100% { transform: rotate(0deg); }
+}
+@keyframes circle006 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(50deg); }
+}
+@keyframes circle007 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(65deg); }
 }
 
 
