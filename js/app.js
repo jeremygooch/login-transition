@@ -43,8 +43,6 @@ var formFieldHighlight = function() {
 	// Set animation to play and fix the top margin by scaling the parent's heigh
 	$(form).addClass('pending').parent().height($(form).height());
 
-	
-	
 	// Need to add field validation
 
 	// Check for correct creds

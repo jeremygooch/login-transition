@@ -139,19 +139,18 @@ form {
       height: auto;
   }
   15% {
+      border-radius: 100px;
       width: 300px;
       height: 300px;
   }
   43% {
       background-color: rgba(0,0,0,.12);
       border: 0px solid rgba(0,0,0,.32);
-      border-radius: 20px;
       width: 250px;
       height: 250px;
   }
   95% {
       background-color: rgba(0,0,0,0);
-      border-radius: 25rem;
       border: 25px solid rgba(0,0,0,.22);
       opacity: 1;
       width: 100px;
@@ -159,7 +158,6 @@ form {
   }
   100% {
       border: 10px solid rgba(0,0,0,0);
-      border-radius: 30px;
       top: 50%;
       opacity: 0;
       width: 10px;
