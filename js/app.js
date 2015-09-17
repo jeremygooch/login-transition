@@ -1,7 +1,9 @@
 $(document).foundation();
 
 var formFieldHighlight = function() {
+
     var highlight = function(elm, remove) {
+	// Highlights a field
 	var beforeClass = 'focusBefore', afterClass= 'focusAfter';
 	if (!remove) {
 	    var before = document.createElement('div'),
@@ -27,17 +29,9 @@ var formFieldHighlight = function() {
 
     var loginSubmit = function() {
 	// Add pending animation
-	var form	= document.getElementById('loginForm');
-	    // circle001	= document.createElement('div');
-
-
-
-	// circle001.className = 'pending-circle c01';
-
-	$(form).addClass('pending').parent().height($(form).height());
+	var form = document.getElementById('loginForm');
 
 	window.setTimeout(function() {
-	    // $(form).after(circle001);
 	    var circle = [];
 	    for (var i=1; i<9; i++) {
 		circle[i] = document.createElement('div');
@@ -45,6 +39,10 @@ var formFieldHighlight = function() {
 		$(form).after(circle[i]);
 	    }	    
 	}, 250);
+
+	// Set animation to play and fix the top margin by scaling the parent's heigh
+	$(form).addClass('pending').parent().height($(form).height());
+
 	
 	
 	// Need to add field validation
@@ -70,6 +68,10 @@ var formFieldHighlight = function() {
 	    });
 	}
     });
+
+    // Focus on the intial input
+    var email = document.getElementById('email');
+    email.focus();
 };
 
 var init = function() {

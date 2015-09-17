@@ -115,6 +115,7 @@ form {
     -webkit-backface-visibility: hidden;
     -webkit-transform: translateZ(0); 
     border-radius: 0rem;
+    border: 0px solid rgba(0,0,0,.52);
     position: relative;
     top: 0;
     left: 0;
@@ -124,33 +125,45 @@ form {
     opacity: 1;
     max-width: 55rem;
     max-height: 45rem;
-    animation: pendingForm 250ms cubic-bezier(0.4, 0, 1, 1);
+    animation: pendingForm 350ms cubic-bezier(0.4, 0, 1, 1);
     animation-fill-mode: forwards;
 }
 @keyframes pendingForm {
   0% {
+      background-color: rgba(0,0,0,.52);
+      border: 0px solid rgba(0,0,0,.52);
       border-radius: 0rem;
       top: 0%;
       opacity: 1;
-      max-width: 55rem;
-      max-height: 45rem;
+      width: 100%;
+      height: auto;
   }
-  33% {
-      border-radius: 2.5rem;
-      top: 0%;
-      opacity: 1;
-      max-width: 25.25rem;
-      max-height: 20.25rem;
+  15% {
+      width: 300px;
+      height: 300px;
+  }
+  43% {
+      background-color: rgba(0,0,0,.12);
+      border: 0px solid rgba(0,0,0,.32);
+      border-radius: 20px;
+      width: 250px;
+      height: 250px;
   }
   95% {
+      background-color: rgba(0,0,0,0);
+      border-radius: 25rem;
+      border: 25px solid rgba(0,0,0,.22);
       opacity: 1;
+      width: 100px;
+      height: 100px;
   }
   100% {
-      border-radius: 5rem;
+      border: 10px solid rgba(0,0,0,0);
+      border-radius: 30px;
       top: 50%;
       opacity: 0;
-      max-width: 4.5rem;
-      max-height: 4.5rem;
+      width: 10px;
+      height: 10px;
   }
 }
 .loginForm.pending .login-content-wrapper {
@@ -166,7 +179,7 @@ form {
     left: 50%;
     top: 50%;
     margin-left: -116px;
-    margin-top: -116px;
+    margin-top: -69px;
     background-position-y: 0px;
     -webkit-transform-origin: 50% 50%;
 }
@@ -190,7 +203,7 @@ form {
     background-size: auto 100%;
     background-image: url(../images/pending-sprite.svg);
     height: 50px; width: 50px;
-    margin: -25px 0 0 -25px;
+    margin: -109px 0 0 -25px;
     background-position-x: -97px;
     animation: fadeIn 200ms ease-out forwards,
                circle003 450ms ease-in forwards,
@@ -245,12 +258,12 @@ form {
 @keyframes circle003 {
     0% {
 	height: 50px; width: 50px;
-	margin: -25px 0 0 -25px;
+	margin: 8px 0 0 -25px;
 	background-position-x: -97px;
     }
     100% {
 	height: 233px; width: 233px; 
-	margin: -116px 0 0 -116px;
+	margin: -71px 0 0 -116px;
 	background-position-x: -467px;
     }
 }
