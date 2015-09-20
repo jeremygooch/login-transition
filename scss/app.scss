@@ -114,6 +114,7 @@ form {
 .loginForm.pending {
     -webkit-backface-visibility: hidden;
     -webkit-transform: translateZ(0); 
+    transform: translateZ(0); 
     border-radius: 0rem;
     border: 0px solid rgba(0,0,0,.52);
     position: relative;
@@ -123,50 +124,75 @@ form {
     width: 100%;
     top: 0%;
     opacity: 1;
-    max-width: 55rem;
-    max-height: 45rem;
+    overflow: hidden;
     animation: pendingForm 350ms cubic-bezier(0.4, 0, 1, 1);
     animation-fill-mode: forwards;
 }
 @keyframes pendingForm {
   0% {
+      -moz-box-shadow:    0 0 15px rgba(0,0,0,.4);
+      -webkit-box-shadow: 0 0 15px rgba(0,0,0,.4);
+      box-shadow:         0 0 15px rgba(0,0,0,.4);
+      max-width: 100%;
       background-color: rgba(0,0,0,.52);
       border: 0px solid rgba(0,0,0,.52);
-      border-radius: 0rem;
+      border-radius: 0px;
       top: 0%;
       opacity: 1;
       width: 100%;
       height: auto;
   }
-  15% {
-      border-radius: 100px;
-      width: 300px;
-      height: 300px;
-  }
-  43% {
+  30% {
       background-color: rgba(0,0,0,.12);
-      border: 0px solid rgba(0,0,0,.32);
-      width: 250px;
-      height: 250px;
+      border: 10px solid rgba(0,0,0,.24);
+      border-radius: 150px;
+      padding: 0 !important;
+      width:	300px;
+      height:	300px;
+  }
+  35% {
+      -moz-box-shadow:    0 0 15px rgba(0,0,0,0);
+      -webkit-box-shadow: 0 0 15px rgba(0,0,0,0);
+      box-shadow:         0 0 15px rgba(0,0,0,0);
+      border: 10px solid rgba(0,0,0,.22);
+  }
+  58% {
+      background-color: transparent;
+      opacity: 1;
+      width: 200px;
+      height: 200px;
   }
   95% {
-      background-color: rgba(0,0,0,0);
-      border: 25px solid rgba(0,0,0,.22);
-      opacity: 1;
+      border: 10px solid rgba(0,0,0,0);
+      background-color: transparent;
+      opacity: .05;
       width: 100px;
       height: 100px;
   }
   100% {
-      border: 10px solid rgba(0,0,0,0);
+      border-radius: 150px;
       top: 50%;
       opacity: 0;
-      width: 10px;
-      height: 10px;
+      width: 84px;
+      height: 84px;
   }
 }
-.loginForm.pending .login-content-wrapper {
-    animation: fadeOut 150ms ease-out;
+.loginForm.pending > .login-content-wrapper {
+    overflow: hidden;
+    -moz-animation: fadeOutShrink 350ms ease-out;
+    /* Webkit doesn't need to shrink, just fade out */
+    -webkit-animation: fadeOut 150ms ease-out;
     animation-fill-mode: forwards;
+}
+@keyframes fadeOutShrink {
+    0% {
+	opacity: 1;
+    }
+    40% { opacity: 0; }
+    100% {
+	opacity: 0;
+	height: 54px;
+    }
 }
 
 .pending-circle {
@@ -177,22 +203,22 @@ form {
     left: 50%;
     top: 50%;
     margin-left: -116px;
-    margin-top: -69px;
-    background-position-y: 0px;
+    margin-top: -96px;
     -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
 }
 
 .c01 {
     /* display: none; */
     background-image: url(../images/pending-sprite.svg);
-    background-position-x: -1px;
+    background-position: -1px 0px;
     animation: fadeIn 100ms ease-out forwards,
                circle001 2000ms ease-out infinite;
 }
 .c02 {
     /* display: none; */
     background-image: url(../images/pending-sprite.svg);
-    background-position-x: -235px;
+    background-position: -235px 0px;
     animation: fadeIn 200ms ease-out forwards,
                circle001 2500ms ease-out infinite;
 }
@@ -201,43 +227,43 @@ form {
     background-size: auto 100%;
     background-image: url(../images/pending-sprite.svg);
     height: 50px; width: 50px;
-    margin: -109px 0 0 -25px;
-    background-position-x: -97px;
-    animation: fadeIn 200ms ease-out forwards,
-               circle003 450ms ease-in forwards,
+    margin: 0px 0 0 -25px;
+    background-position: -97px 0px;
+    animation: circle003 450ms ease-in forwards,
                fullRotation 1500ms 450ms ease-in alternate infinite;
 }
 .c04 {
+    z-index: -1;
     background-image: url(../images/pending-sprite.svg);
-    background-position-x: -699px;
+    background-position: -699px 0px;
     animation: fadeIn 500ms ease-out forwards,
                halfFadeIn 250ms ease-out alternate infinite;
 }
 .c05 {
     /* display: none; */
     background-image: url(../images/pending-sprite.svg);
-    background-position-x: -932px;
+    background-position: -932px 0px;
     animation: fadeIn 200ms ease-out forwards,
                circle004 2500ms ease-out infinite;
 }
 .c06 {
     /* display: none; */
     background-image: url(../images/pending-sprite.svg);
-    background-position-x: -1166px;
+    background-position: -1166px 0px;
     animation: fadeIn 200ms ease-out forwards,
                circle005 2200ms ease-out infinite;
 }
 .c07 {
     /* display: none; */
     background-image: url(../images/pending-sprite.svg);
-    background-position-x: -1398px;
+    background-position: -1398px 0px;
     animation: fadeIn 200ms ease-out forwards,
                circle006 2200ms ease-out alternate infinite;
 }
 .c08 {
     /* display: none; */
     background-image: url(../images/pending-sprite.svg);
-    background-position-x: -1634px;
+    background-position: -1634px 0px;
     animation: fadeIn 220ms ease-out forwards,
                circle007 2000ms ease-out alternate infinite;
 }
@@ -255,14 +281,16 @@ form {
 }
 @keyframes circle003 {
     0% {
+	opacity: 0;
 	height: 50px; width: 50px;
-	margin: 8px 0 0 -25px;
-	background-position-x: -97px;
+	margin: 0px 0 0 -25px;
+	background-position: -97px 0px;
     }
+    65% { opacity: 1; }
     100% {
 	height: 233px; width: 233px; 
-	margin: -71px 0 0 -116px;
-	background-position-x: -467px;
+	margin: -98px 0 0 -116px;
+	background-position: -467px 0px;
     }
 }
 @keyframes circle004 {

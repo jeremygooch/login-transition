@@ -42,6 +42,9 @@ var formFieldHighlight = function() {
 
 	// Set animation to play and fix the top margin by scaling the parent's heigh
 	$(form).addClass('pending').parent().height($(form).height());
+	var inner = $(form).find('.login-content-wrapper');
+	// Set the height of the inner wrapper so the FF animation will appear correct
+	inner.css('height', inner.height() + 'px');
 
 	// Need to add field validation
 
